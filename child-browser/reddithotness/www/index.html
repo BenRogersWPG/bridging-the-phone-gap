@@ -54,23 +54,34 @@
     
     </script>
   </head>
-  <body onload="onBodyLoad()">
-	<body>
-		<div data-role="view" id="dark-theme" data-title="Reddit Hotness">
+	<body onload="onBodyLoad()">
+
+		<div data-role="view" data-layout="main-layout" id="hot">
+			<ul id="popular_news" data-role="listview" data-style="inset"></ul>
+		</div>
+		<div data-role="view" data-layout="main-layout" id="new"></div>
+		<div data-role="view" data-layout="main-layout" id="drama"></div>
+		<div data-role="view" data-layout="main-layout" id="settings">
+			<h2>Select A Reddit</h2>
+			<ul id="select-a-reddit" data-role="listview"></ul>
+		</div>
+
+
+		<div id="dark-theme" data-role="layout" data-id="main-layout" data-title="Reddit Hotness">
 	      	<div data-role="header">
 				<div data-role="navbar"><img src="images/header.png" />Reddit Hotness</div>	
 			</div>
-			<ul id="popular_news" data-role="listview" data-style="inset"></ul>
 			<div data-role="footer">
 				<div data-role="tabstrip" id="tabstrip">
-					<a data-icon="favorites" href="#">Hot</a>
-                    <a data-icon="mostrecent" href="#">New</a>
-                    <a data-icon="trash" href="#">Drama</a>
-					<a data-icon="settings" href="#">Settings</a>
+					<a data-icon="favorites" href="#hot">Hot</a>
+                    <a data-icon="mostrecent" href="#new">New</a>
+                    <a data-icon="trash" href="#drama">Drama</a>
+					<a data-icon="settings" href="#settings">Settings</a>
 				</div>
 			</div>
 		</div>
-	  </body>
+
+	</body>
 
 	  <script id="template" type="text/x-kendo-template">
 		# if ( data.title.length > 60 ) {
@@ -89,7 +100,7 @@
 	  </script>
 
 	  <script src="jquery.min.js"></script>
-	  <script src="kendo.mobile.min.js"></script>
+	  <script src="kendo.all.min.js"></script>
 	  <script src="app.js"></script>
 
 	  <script>

@@ -1,5 +1,7 @@
 var app = (function() {
 	
+	var reddit_base = "http://reddit.com";
+	
 	var pub = {};
 	
 	var tmp = new kendo.data.DataSource({
@@ -34,6 +36,23 @@ var app = (function() {
 		},
 		sort: { field: "data.score", dir: "desc" }
 	});
+	
+	var reddits = new kendo.data.DataSource({
+		transport: {
+			read: "reddits.json"
+		},
+		schema: {
+			data: "data.children",
+			fields: {
+				name: "data.display_name",
+				url: reddit_base + "data.url" + ".json",
+				title: "title"
+			}
+		},
+		group: {
+			
+		}
+	})
 
 
 	pub.init = function() {
@@ -43,14 +62,19 @@ var app = (function() {
 	
 		// create the listview
 		$("#popular_news").kendoMobileListView({
-			dataSource: reddit,
+			dataSource: tmp,
 			template: kendo.template($("#template").html()),
-			style: "inset",
+			style: "inset"
 			/*click: function(e) {
 
 			}*/
 		});
 		
+		$("#select-a-reddit").kendoMobileListView({
+			dataSource: reddits,
+			template: "${name}"
+			style: "inset"
+		});	
 	}
 	
 
